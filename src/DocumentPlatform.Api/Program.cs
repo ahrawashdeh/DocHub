@@ -13,10 +13,14 @@ builder.Services.AddTransient<TransientLifetimeService>();
 builder.Services.AddScoped<ScopedLifetimeService>();
 builder.Services.AddSingleton<SingletonLifetimeService>();
 builder.Services.Configure<DocumentOptions>(builder.Configuration.GetSection("DocumentOptions"));
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 app.UseMiddleware<RequestTimingMiddleware>();
 app.UseMiddleware<ShortCircuitMiddleware>();
