@@ -3,4 +3,7 @@
 GET {{DocumentPlatform.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
+GET {{DocumentPlatform.Api_HostAddress}}/api/documents/blocked/
+Accept: application/json
+
 ###

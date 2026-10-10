@@ -12,6 +12,7 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 app.UseMiddleware<RequestTimingMiddleware>();
+app.UseMiddleware<ShortCircuitMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
