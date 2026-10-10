@@ -1,4 +1,5 @@
 using DocumentPlatform.Api.Middleware;
+using DocumentPlatform.Api.Services;
 using Swashbuckle.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IDocumentService, DocumentService>();
+builder.Services.AddTransient<TransientLifetimeService>();
+builder.Services.AddScoped<ScopedLifetimeService>();
+builder.Services.AddSingleton<SingletonLifetimeService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

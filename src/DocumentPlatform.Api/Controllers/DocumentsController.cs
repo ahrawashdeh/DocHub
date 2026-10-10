@@ -1,3 +1,4 @@
+using DocumentPlatform.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentPlatform.Api.Controllers;
@@ -6,16 +7,16 @@ namespace DocumentPlatform.Api.Controllers;
 [Route("api/[controller]")]
 public class DocumentsController : ControllerBase
 {
-    private static readonly Document[] Documents =
-    [
-        new(1, "First Document")
-    ];
+    private readonly IDocumentService _documentService;
+
+    public DocumentsController(IDocumentService documentService)
+    {
+        _documentService = documentService;
+    }
 
     [HttpGet]
     public ActionResult<IEnumerable<Document>> Get()
     {
-        return Ok(Documents);
+        return Ok(_documentService.GetDocuments());
     }
 }
-
-public record Document(int Id, string Title);
