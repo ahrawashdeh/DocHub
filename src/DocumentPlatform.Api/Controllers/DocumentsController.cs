@@ -8,15 +8,19 @@ namespace DocumentPlatform.Api.Controllers;
 public class DocumentsController : ControllerBase
 {
     private readonly IDocumentService _documentService;
+    private readonly ILogger<DocumentsController> _logger;
 
-    public DocumentsController(IDocumentService documentService)
+    public DocumentsController(IDocumentService documentService, ILogger<DocumentsController> logger)
     {
         _documentService = documentService;
+        _logger = logger;
     }
 
     [HttpGet]
     public ActionResult<IEnumerable<Document>> Get()
     {
+        _logger.LogInformation("Retrieving document list");
+
         return Ok(_documentService.GetDocuments());
     }
 }

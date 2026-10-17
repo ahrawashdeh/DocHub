@@ -16,6 +16,11 @@ public class DocumentService : IDocumentService
 
     public IEnumerable<Document> GetDocuments()
     {
+        if (Documents.Length == 0)
+        {
+            _logger.LogWarning("No documents are available to return");
+        }
+
         _logger.LogInformation("Returned {DocumentCount} documents", Documents.Length);
         return Documents;
     }

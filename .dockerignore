@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+**/.vs/
+**/*.user
+.git/
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml

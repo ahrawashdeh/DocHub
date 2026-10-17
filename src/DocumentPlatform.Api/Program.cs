@@ -16,7 +16,8 @@ try
         .ReadFrom.Configuration(context.Configuration)
         .ReadFrom.Services(services)
         .Enrich.FromLogContext()
-        .WriteTo.Console());
+        .WriteTo.Console()
+        .WriteTo.Seq(context.Configuration["Seq:ServerUrl"]!));
 
     // Add services to the container.
 
@@ -32,6 +33,8 @@ try
     builder.Services.AddOpenApi();
 
     var app = builder.Build();
+
+    app.UseSerilogRequestLogging();
 
     app.UseExceptionHandler();
 
